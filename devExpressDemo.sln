@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35201.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "devExpressDemo", "devExpressDemo\devExpressDemo.csproj", "{1774670E-2CA2-432E-843F-8D919443FA99}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "DevExtreme NuGet.config", "{55C151DA-20BA-4DD4-B0AD-E08DE115E0DB}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1774670E-2CA2-432E-843F-8D919443FA99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1774670E-2CA2-432E-843F-8D919443FA99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1774670E-2CA2-432E-843F-8D919443FA99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1774670E-2CA2-432E-843F-8D919443FA99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA956A7D-4322-4FF8-885D-770504773BFF}
+	EndGlobalSection
+EndGlobal
