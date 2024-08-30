@@ -1,4 +1,5 @@
-﻿@{
+﻿@using DevExpress.ClipboardSource.SpreadsheetML
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_DevExtremeLayout.cshtml";
 }
@@ -12,50 +13,52 @@
 
 
 <h2 class="text-white text-center">Employee List</h2>
-
 @(
 Html.DevExtreme().DataGrid<devExpressDemo.Models.Product>()
-                            .ID("gridContainer")
-                            .DataSource(ds => ds.Mvc()
-                                .Controller("Home")
-                                .LoadAction("GetProducts") // Use the new action method
-                                .InsertAction("Post")
-                                .UpdateAction("Put")
-                                .DeleteAction("Delete")
-                                .Key("Id")
-                            )
-                            .Selection(s => s.Mode(SelectionMode.Multiple))
-                            .Export(e => e.Enabled(true)
-                            .AllowExportSelectedData(true)
-                            .Formats(new [] { "pdf" })
-                            )
-                            .OnExporting("exportToPDF")
-                            .ColumnChooser(c => c.Enabled(true))
-                            .RemoteOperations(true)
-                            .ShowBorders(true)
-                            .AllowColumnReordering(true)
-                            .AllowColumnResizing(true)
-                            .HoverStateEnabled(true)
-               .Paging(paging => paging.PageSize(10)) // Set the page size to 10
-               .Pager(pager =>
-               {
-                   pager.Visible(true); // Make the pager visible
-                   pager.DisplayMode(GridPagerDisplayMode.Full); // Show the full pager
-                   pager.ShowPageSizeSelector(true); // Allow changing page size
-                   pager.AllowedPageSizes(new JS("[5, 10, 'all']")); // Options for page sizes
-                   pager.ShowInfo(true); // Show current page and total items
-                   pager.ShowNavigationButtons(true); // Show navigation buttons
-               })
-               .SearchPanel(s => s
-               .Visible(true)
-               .HighlightCaseSensitive(true)
-               ) 
+    .ID("gridContainer")
+    .DataSource(ds => ds.Mvc()
+        .Controller("Home")
+        .LoadAction("GetProducts")
+        .InsertAction("Post")
+        .UpdateAction("Put")
+        .DeleteAction("Delete")
+        .Key("Id")
+    )
+    .Selection(s => s.Mode(SelectionMode.Multiple))
+    .Export(e => e.Enabled(true)
+        .AllowExportSelectedData(true)
+        .Formats(new[] { "pdf" })
+    )
+    .OnExporting("exportToPDF")
+    .ColumnChooser(c => c.Enabled(true))
+    .RemoteOperations(true)
+    .ShowBorders(true)
+    .AllowColumnReordering(true)
+    .AllowColumnResizing(true)
+    .HoverStateEnabled(true)
+    .Paging(paging => paging.PageSize(10))
+    .Pager(pager =>
+    {
+        pager.Visible(true);
+        pager.DisplayMode(GridPagerDisplayMode.Full);
+        pager.ShowPageSizeSelector(true);
+        pager.AllowedPageSizes(new JS("[5, 10, 'all']"));
+        pager.ShowInfo(true);
+        pager.ShowNavigationButtons(true);
+    })
+    .SearchPanel(s => s
+        .Visible(true)
+        .HighlightCaseSensitive(true)
+    )
     .Columns(columns =>
     {
         columns.AddFor(m => m.Id).Caption("ID").AllowSorting(true).CssClass("text-center").Fixed(true);
         columns.AddFor(m => m.Name).Caption("Name").AllowSorting(true).CssClass("text-center");
         columns.AddFor(m => m.Email).Caption("Email").AllowSorting(true).CssClass("text-center");
         columns.AddFor(m => m.Price).Caption("Price").AllowSorting(true).CssClass("text-center");
+        columns.Add().Caption("Image").AllowSorting(false).CellTemplate(@<text>
+            <img src="<%- data.Image %>" alt="Image" style="width:50px; height:auto;" />
+        </text>);
     })
     .Summary(s => s.TotalItems(item =>
     {
@@ -67,6 +70,8 @@ Html.DevExtreme().DataGrid<devExpressDemo.Models.Product>()
         .AllowDeleting(true)
     )
 )
+
+
 
 <script type="text/javascript">
     function exportToPDF(e) {
