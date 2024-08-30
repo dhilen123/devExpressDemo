@@ -23,10 +23,7 @@ namespace devExpressDemo.Controllers
             return View();
         }
 
-        public IActionResult Test()
-        {
-            return View();
-        }
+      
 
         public IActionResult GetProducts(DataSourceLoadOptions loadoptions) // New action method for DataGrid data
         {
